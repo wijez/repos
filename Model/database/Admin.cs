@@ -17,7 +17,7 @@ namespace Model.database
         [StringLength(30)]
         public string PassAdmin { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50)]  
         public string FullName { get; set; }
     }
 }

@@ -29,6 +29,30 @@ namespace Model
             const string sql = "EXEC sp_signin_user @UserAdmin, @PassAdmin";
             var isAuthenticated = context.Database.SqlQuery<bool>(sql, sqlParams).SingleOrDefault();
             return isAuthenticated;
-        } 
+        }
+
+        public bool Register(string UserAdmin, string PassAdmin, string FullName)
+        {
+            try
+            {
+                var sqlParams = new[]
+                {
+            new SqlParameter("@UserAdmin", UserAdmin),
+            new SqlParameter("@PassAdmin", PassAdmin),
+            new SqlParameter("@FullName", FullName)
+        };
+                const string sql = "EXEC AddUser @UserAdmin, @PassAdmin, @FullName";
+                var isRegistered = context.Database.SqlQuery<int>(sql, sqlParams).SingleOrDefault();
+                Console.WriteLine(isRegistered);
+                return isRegistered==1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error occurred while registering user: " + ex.Message);
+                return false; // Trả về false để biểu thị rằng quá trình đăng ký thất bại
+            }
+        
+    }
+
     }
 }

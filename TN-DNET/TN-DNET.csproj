@@ -489,6 +489,9 @@
     <Compile Include="Areas\Admin\Controllers\BookController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
+    <Compile Include="Areas\Admin\Models\RegisterModel.cs" />
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HelloController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -2451,6 +2454,8 @@
     <Content Include="Areas\Admin\Views\Author\DeleteConfirmed.cshtml" />
     <Content Include="Areas\Admin\Views\Author\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Book\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Admin\Views\Author\Details.cshtml" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -2476,10 +2481,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Hello\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLibrary.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Hello\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Hello\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

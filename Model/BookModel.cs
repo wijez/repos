@@ -45,17 +45,17 @@ namespace Model
 
         public int UpdateBook(int? id, string title, int? author_id, decimal? price, string images, int? category_id, string descriptions, DateTime? published, int? view_count)
         {
-            object[] sqlparams =  {
-        new SqlParameter("@id", id),
-        new SqlParameter("@title", title),
-        new SqlParameter("@author_id", author_id),
-        new SqlParameter("@price", price),
-        new SqlParameter("@images", images),
-        new SqlParameter("@category_id", category_id),
-        new SqlParameter("@descriptions", descriptions),
-        new SqlParameter("@published", published),
-        new SqlParameter("@view_count", view_count)
-    };
+                object[] sqlparams =  {
+            new SqlParameter("@id", id),
+            new SqlParameter("@title", title),
+            new SqlParameter("@author_id", author_id),
+            new SqlParameter("@price", price),
+            new SqlParameter("@images", images),
+            new SqlParameter("@category_id", category_id),
+            new SqlParameter("@descriptions", descriptions),
+            new SqlParameter("@published", published),
+            new SqlParameter("@view_count", view_count)
+            };
 
             int res = context.Database.ExecuteSqlCommand("EXEC UpdateBook @id, @title, @author_id, @price, @images, @category_id, @descriptions, @published, @view_count", sqlparams);
             return res;

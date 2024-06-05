@@ -34,7 +34,7 @@ namespace TN_DNET.Areas.Admin.Controllers
                 Console.WriteLine(Membership.ValidateUser(model.UserAdmin, model.PassAdmin));
                 Console.WriteLine(ModelState.IsValid);
                 return RedirectToAction("Index", "Home");
-               
+
             }
             else
             {
@@ -42,12 +42,38 @@ namespace TN_DNET.Areas.Admin.Controllers
             }
             return View(model);
         }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
 
-    
+        [HttpPost]
+        public ActionResult Register(RegisterModel model)
+        {
+           if (ModelState.IsValid)
+            {
+                bool registrationSuccess = new AccountModel().Register(model.UserAdmin, model.PassAdmin, model.FullName);
+                Console.WriteLine(registrationSuccess);
+
+                if (registrationSuccess)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Đăng ký không thành công. Vui lòng thử lại.");
+                }
+            }
+
+            return View(model);
+        }
+
+
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Account", new { area = "Admin" });
+            return RedirectToAction("Index", "Hello");
         }
 
     }
