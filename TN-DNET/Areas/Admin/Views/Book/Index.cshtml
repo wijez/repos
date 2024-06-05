@@ -1,0 +1,117 @@
+﻿@*@model IEnumerable<Model.database.Book>*@
+@model PagedList.IPagedList<Model.database.Book>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+ 
+
+
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Author ID
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Images
+                            </th>
+                            <th>
+                                Category ID
+                            </th>
+                            <th>
+                                Descriptions
+                            </th>
+                            <th>
+                                Published
+                            </th>
+                            <th>
+                                View Count
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.author_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.images)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.category_id)
+                                </td>
+                                <td>
+
+                                    @{
+                                        string description = item.descriptions;
+                                        if (!string.IsNullOrEmpty(description))
+                                        {
+                                            if (description.Length > 200) // Chỉ hiển thị tối đa 200 ký tự
+                                            {
+                                                description = description.Substring(0, 200) + "...";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            description = "N/A";
+                                        }
+                                    }
+                                    @description
+
+                                    @*  @Html.DisplayFor(modelItem => item.descriptions)*@
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.published)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.view_count)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center">
+                @Html.PagedListPager(Model, limit => Url.Action("Index", new { limit }));
+            </div>
+
+        </div>
+    </div>
+ 
+
+</div>

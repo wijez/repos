@@ -1,0 +1,34 @@
+﻿@model Model.database.Author
+
+@{
+    ViewBag.Title = "DeleteConfirmed";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DeleteConfirmed</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Author</h4>
+    <hr />
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger" role="alert">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+    }
+
+    <dl class="dl-horizontal">
+        <!-- Code hiển thị thông tin sách -->
+    </dl>
+
+    @using (Html.BeginForm("DeleteConfirmed", "Author", new { id = Model.id }, FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
